@@ -11,10 +11,12 @@ import { Subscription } from 'rxjs/Subscription';
 export class AppComponent {
   courses$;
   course$;
+  authors$;
 
   constructor(db: AngularFireDatabase) {
     this.courses$ = db.list('/courses').valueChanges();
     this.course$ = db.object('/courses/1').valueChanges();
     console.log(this.course$);
+    this.authors$ = db.object('authors/1').valueChanges();
   }
 }

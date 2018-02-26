@@ -5,3 +5,9 @@
   </li>
 </ul>
 <p>{{ course$ | async | json}}</p>
+
+<ul *ngIf="authors$ | async as author">
+  <li>{{author.name}}</li>
+  <li>{{author.students}}</li>
+  <li>{{author.isPremium}}</li>
+</ul>
