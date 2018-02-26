@@ -1,8 +1,7 @@
 # FirebaseDemo
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.1. 
-Node version 9.6.1 
-npm version 5.6.0
+Node version 9.6.1 and npm version 5.6.0
 
 ## Development server
 
