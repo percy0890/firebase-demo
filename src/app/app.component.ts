@@ -1,6 +1,5 @@
-import {Observable} from 'rxjs/Observable';
 import { Component } from '@angular/core';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
@@ -13,10 +12,14 @@ export class AppComponent {
   course$;
   authors$;
 
-  constructor(db: AngularFireDatabase) {
-    this.courses$ = db.list('/courses').valueChanges();
+  constructor(private db: AngularFireDatabase) {
+    this.courses$ = db.list('/courses').valueChanges(); // valueChange() converts AngularFireList into observable
     this.course$ = db.object('/courses/1').valueChanges();
-    console.log(this.course$);
     this.authors$ = db.object('authors/1').valueChanges();
+  }
+
+  add(course) {
+    this.db.list('/courses').push({title: course.value});
+    course.value = '';
   }
 }
