@@ -26,6 +26,6 @@ export class AppComponent {
   update(courseObj) {
     console.log(courseObj);
     this.db.list('/courses/' + courseObj.id)
-      .set('title' , 'course' + courseObj.id);
+      .set('title' , courseObj.title + ' ' + 'updated');
   }
 }
