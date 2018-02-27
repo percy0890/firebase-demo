@@ -22,4 +22,10 @@ export class AppComponent {
     this.db.list('/courses').push({title: course.value});
     course.value = '';
   }
+
+  update(courseObj) {
+    console.log(courseObj);
+    this.db.list('/courses/' + courseObj.id)
+      .set('title' , 'course' + courseObj.id);
+  }
 }
