@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireList, snapshotChanges } from 'angularfire2/database';
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
@@ -19,13 +19,20 @@ export class AppComponent {
   }
 
   add(course) {
+    const x = course.push().key;
+    console.log(x);
     this.db.list('/courses').push({title: course.value});
     course.value = '';
   }
 
-  update(courseObj) {
-    console.log(courseObj);
+  update(courseObj, courses) {
     this.db.list('/courses/' + courseObj.id)
       .set('title' , courseObj.title + ' ' + 'updated');
+  }
+
+  delete(courseObj) {
+    this.db.list('/courses/' + courseObj.id)
+      .remove()
+      .then(x => console.log('deleted'));
   }
 }

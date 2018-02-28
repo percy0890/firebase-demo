@@ -1,10 +1,10 @@
-<button (click)="ngOnDestroy()">Go Offline</button>
 
 <input type="text" (keyup.enter)="add(course)" #course />
-<ul>
-  <li *ngFor="let course of courses$ | async">
+<ul *ngIf="courses$ | async as courses">
+  <li *ngFor="let course of courses">
     {{course.title}}
-    <button (click)="update(course)">Update</button>
+    <button (click)="update(course, courses)">Update</button>
+    <button (click)="delete(course, courses)">Delete</button>
   </li>
 </ul>
 <p>{{ course$ | async | json}}</p>
